@@ -1,0 +1,103 @@
+{%- if settings.sb_account_placement == 'left' -%}
+<div class="col-md-3{% if settings.sb_account_mobile %} hidden-sm hidden-xs{% endif %}">
+  {%- include 'sidebar-myaccount' -%}
+</div>
+{%- endif -%}
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-6 paraCentrar">
+      <ul class="nav nav-tabs tabla" id="myForm">
+        <li class="active"><a href="#one">
+            ENTRAR
+          </a></li>
+        <li><a href="#two">
+            NUEVO CLIENTE
+          </a></li>
+      </ul>
+
+      <form action="" method="post">
+        <div class="tab-content">
+          <div class="tab-pane active" id="one">
+            <div class="col-sm-12">
+              <div id="customer-login" class="well">
+                <p class="parrafoLogin">Inicia sesión para acceder a tu cuenta.</p>
+                {%- form 'customer_login' -%}
+                {%- if form.errors -%}
+                <div class="warning">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  {{form.errors | default_errors}}
+                </div>
+                {%- endif -%}
+
+                <div class="form-group required{% if form.errors contains 'email' %} has-error{% endif %}">
+                  <label class="control-label" for="input-email">{{'customer.login.email' | t}}</label>
+                  <input type="email" required="required" name="customer[email]" id="input-email"
+                    class="form-control" />
+                </div>
+                {%- if form.password_needed -%}
+                <div class="form-group required{% if form.errors contains 'password' %} has-error{% endif %}">
+                  <label class="control-label" for="input-password">{{'customer.login.password' | t}}</label>
+                  <input type="password" required="required" name="customer[password]" id="input-password"
+                    class="form-control" />
+                </div>
+                <div id="forgot_password">
+                  <a href="#recover">{{'customer.login.forgot_password' | t}}</a>
+                </div>
+                {%- endif -%}
+                <input type="submit" value="{{'customer.login.sign_in' | t}}" class="btn btn-primary logueo" />
+                {%- endform -%}
+              </div>
+              <div id="recover-password" class="well" style="display:none;">
+                <h2>{{'customer.recover_password.title' | t}}</h2>
+
+                <p>{{'customer.recover_password.subtext_recover' | t}}</p>
+
+                {%- form 'recover_customer_password' -%}
+                {%- if form.errors -%}
+                <div class="warning">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  {{form.errors | default_errors}}
+                </div>
+                {%- endif -%}
+
+                <div class="form-group required">
+                  <label class="control-label" for="input-password">{{'customer.recover_password.email' | t}}</label>
+                  <input type="email" required="required" name="email" id="recover-email" class="form-control" />
+                </div>
+                <div class="action_bottom">
+                  <input type="submit" value="{{'customer.recover_password.submit' | t}}" class="btn btn-primary" />
+                  <span class="ml20"><a class="cancel" href="javascript:void(0);">{{'customer.recover_password.cancel' |
+                      t}}</a></span>
+                </div>
+                {%- endform -%}
+              </div>
+              <script></script>
+            </div>
+          </div>
+          <div class="tab-pane" id="two">
+            <div class="well">
+              <h2>{{'customer.register.text_register' | t}}</h2>
+              <p>{{'customer.register.text_register_account' | t}}</p>
+              <a href="/account/register" class="btn btn-primary">{{'customer.register.button_continue' | t}}</a>
+            </div>
+          </div>
+        </div>
+      </form>
+      {%- if settings.sb_account_placement == 'right' -%}
+      <div class="col-md-3{% if settings.sb_account_mobile %} hidden-sm hidden-xs{% endif %}">
+        {%- include 'sidebar-myaccount' -%}
+      </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+  $('#myForm a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
+</script>

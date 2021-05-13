@@ -1,0 +1,73 @@
+{% section 'custom_widget2' %}
+
+<div id="content" class="col-md-12 center-column content-with-background">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="textoCabecera">CÓMO TE<br> PODEMOS AYUDAR?</div>
+      {% section 'banner2' %}
+      {{page.content}}
+      <!-- Acá comienza el formulario -->
+      {%- form 'contact' -%}
+      {%- if form.posted_successfully? -%}
+      <div class="success">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{'contact.form.post_success' | t}}
+      </div>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+      <div class="warning">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        {{form.errors | default_errors}}
+      </div>
+      {%- endif -%}
+      <fieldset class="form-horizontal">
+        <div class="txtFormu">Escríbenos</div>
+        <div class="col-sm-4 nada">
+          <div class="form-group required">
+            <div class="col-sm-12">
+              <input required="required" type="text" id="name" class="form-control"
+                value="{%- if form.name -%}{{form.name}}{%- elsif customer -%}{{customer.first_name}} {{customer.last_name}}{%- endif -%}"
+                name="contact[name]" placeholder="INGRESA TU NOMBRE *" />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 nada">
+          <div class="form-group required">
+            <div class="col-sm-12">
+              <input required="required" type="email" id="email" class="form-control"
+                value="{%- if form.email -%}{{form.email}}{%- elsif customer -%}{{customer.email}}{%- endif -%}"
+                name="contact[email]" placeholder="INGRESA TU EMAIL *" />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 nada">
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input type="text" id="phone" class="form-control" value="{{form.phone}}" name="contact[phone]"
+                placeholder="INGRESA TU TELÉFONO *" />
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 nada2">
+          <div class="form-group required">
+            <div class="col-sm-12">
+              <textarea required="required" id="message" rows="10" class="form-control" name="contact[body]"
+                placeholder="INGRESA TU TELÉFONO *" />{{form.body}}</textarea>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+      <div class="buttons">
+        <div class="center">
+          <input class="btn btn-primary envio" type="submit" value="{{'contact.form.submit' | t}}" />
+        </div>
+      </div>
+      {%- endform -%}
+
+
+      <!-- Termina el formulario -->
+    </div>
+  </div>
+
+</div>

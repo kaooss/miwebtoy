@@ -9,6 +9,7 @@
 <!--<![endif]-->
 
 <head>
+  holaaaaaa
   <meta charset="utf-8" />
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js" defer="defer"></script>
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
@@ -41,9 +42,9 @@
   {% include 'weketing-tracking' %}
   {%- capture is_shopify_admin -%}{% include 'check-shopify-admin' %}{%- endcapture -%}
 
-	{{ shop.metafields.loox["global_html_head"] }}
-  
-  
+  {{ shop.metafields.loox["global_html_head"] }}
+
+
 </head>
 {% capture body_class %}{% if settings.page_width == '3' %} body-full-width{% endif %}{% if
 settings.advanced_product_list != '' %} product-list-type-{{settings.advanced_product_list}}{% endif %}{% if
@@ -213,8 +214,8 @@ templatePageCollection{% endif %}{% endcapture %}
   <script src="{{ 'theme-admin.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 
-	{{ shop.metafields.loox["global_html_body"] }}
-   
+  {{ shop.metafields.loox["global_html_body"] }}
+
 </body>
 
 </html>
